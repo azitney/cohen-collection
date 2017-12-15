@@ -60,7 +60,7 @@ class FeaturedProducts extends Component {
       </div>
     </div>
 
-    
+
       </Container>
     );
   }

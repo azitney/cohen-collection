@@ -4,13 +4,12 @@ import {Link} from 'react-router-dom';
 import Logo from '../media/logo.jpg';
 import {connect} from 'react-redux';
 
-
-
 class MainNav extends Component {
+
   render() {
 
-
     return (
+
       <Navbar className='mainNav' color="faded" light expand="md">
         <Link to={'/'}><img className='logo' src={`${Logo}`}/></Link>
         <Nav className="ml-auto" navbar>
@@ -30,7 +29,5 @@ function mapStateToProps(store, thisComponentsProps){
     shoppingcart: store.shoppingcart
   }
 }
-
-
 
 export default connect(mapStateToProps, null)(MainNav);

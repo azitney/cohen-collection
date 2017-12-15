@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import {  Col, Container, Row,
- Button, Card, CardImg, CardTitle,
-  CardSubtitle, CardBody, CardDeck } from 'reactstrap';
+import {  Container,
+ Card, CardImg, CardTitle,
+ CardSubtitle, CardBody, CardDeck } from 'reactstrap';
 import {connect} from 'react-redux';
 import { addItem } from '../actions/shoppingcart';
 import {Link} from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
 
 
 class Featured extends Component {
@@ -12,13 +14,14 @@ class Featured extends Component {
   handleAddToCart = (e) => {
     this.props.addItem(e.target.id)
   }
-
   render() {
 
     let itemone = this.props.items[Math.floor((Math.random() * this.props.items.length))]
-    let itemtwo = this.props.items[Math.floor((Math.random() * this.props.items.length))]
-    let itemthree = this.props.items[Math.floor((Math.random() * this.props.items.length))]
-    console.log(itemone, itemtwo, itemthree)
+    let filteritemone = this.props.items.filter((item)=> item.id != itemone.id)
+    let itemtwo = filteritemone[Math.floor((Math.random() * filteritemone.length))]
+    let filteritemtwo = filteritemone.filter((item)=> item.id != itemtwo.id)
+    let itemthree = filteritemtwo[Math.floor((Math.random() * filteritemtwo.length))]
+
     return (
       <div className='catagory'>
         <Container>
@@ -30,9 +33,9 @@ class Featured extends Component {
                 <CardTitle>{itemone? itemone.title : ' '}</CardTitle>
                 <CardSubtitle>${itemone? (itemone.price/100).toFixed(2) : ' '}</CardSubtitle>
                 <br></br>
-                  <Link className='item-button' to={'/'}>
-                  <a id={itemone? itemone.id : ' '}>Details</a></Link>
-                  <span className='item-button'><a onClick={this.handleAddToCart} id={itemone? itemone.id : ' '}>Add To Cart</a></span>
+                <Link className='item-button' to={`/item/${itemone? itemone.id : ' '}`}>
+                <a id={itemone? itemone.id : ' '}>Details</a></Link>
+                <span className='item-button'><a onClick={this.handleAddToCart} id={itemone? itemone.id : ' '}>Add To Cart</a></span>
               </CardBody>
             </Card >
             <Card className='item-card rounded-0 text-left'>
@@ -41,9 +44,9 @@ class Featured extends Component {
                 <CardTitle>{itemtwo? itemtwo.title : ' '}</CardTitle>
                 <CardSubtitle>${itemtwo? (itemtwo.price/100).toFixed(2) : ' '}</CardSubtitle>
                 <br></br>
-                  <Link className='item-button' to={'/'}>
-                  <a id={itemthree? itemtwo.id : ' '}>Details</a></Link>
-                  <span className='item-button'><a onClick={this.handleAddToCart} id={itemtwo? itemtwo.id : ' '}>Add To Cart</a></span>
+                <Link className='item-button' to={`/item/${itemtwo? itemtwo.id : ' '}`}>
+                <a id={itemtwo? itemtwo.id : ' '}>Details</a></Link>
+                <span className='item-button'><a onClick={this.handleAddToCart} id={itemtwo? `${itemtwo.id}` : ' '}>Add To Cart</a></span>
               </CardBody>
             </Card >
             <Card className='item-card rounded-0 text-left'>
@@ -52,12 +55,11 @@ class Featured extends Component {
                 <CardTitle>{itemthree? itemthree.title : ' '}</CardTitle>
                 <CardSubtitle>${itemthree? (itemthree.price/100).toFixed(2) : ' '}</CardSubtitle>
                 <br></br>
-                <Link className='item-button' to={'/'}>
+                <Link className='item-button' to={`/item/${itemthree? itemthree.id : ' '}`}>
                 <a id={itemthree? itemthree.id : ' '}>Details</a></Link>
                 <span className='item-button'><a onClick={this.handleAddToCart} id={itemthree? itemthree.id : ' '}>Add To Cart</a></span>
               </CardBody>
             </Card >
-
           </CardDeck>
         </Container>
       </div>
@@ -72,4 +74,10 @@ function mapStateToProps(store, thisComponentsProps){
   }
 }
 
-export default connect(mapStateToProps, null)(Featured);
+function mapDispatchToProps(dispatch){
+  return{
+    addItem: bindActionCreators(addItem, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Featured);

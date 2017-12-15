@@ -6,17 +6,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
 
-
-
-
 class Item extends Component {
-
 
   handleAddToCart = (e) => {
     this.props.addItem(e.target.id)
   }
+
   render() {
+
     return (
+      
       <div>
         <Card className='item-card rounded-0 text-left'>
           <CardImg top width="200px" height='250px' src={`${this.props.item.primary_photo}`} alt="Card image cap" />

@@ -13,6 +13,7 @@ import SideNav from './components/SideNav';
 import MainNav from './components/MainNav';
 import Footer from './components/Footer';
 import ManagerAdd from './components/ManagerAdd';
+import ManagerLogin from './components/ManagerLogin';
 import { bindActionCreators } from 'redux';
 import { getItems } from './actions/items';
 import { connect } from 'react-redux';
@@ -44,6 +45,7 @@ class App extends Component {
             <Route exact path='/manageedititem/:id' component={ManagerEdit}/>
             <Route exact path='/manageradditem' component={ManagerAdd}/>
             <Route exact path='/items/:filter' component={ItemList}/>
+            <Route exact path='/managerlogin' component={ManagerLogin}/>
           </Switch>
 
       <Row>
