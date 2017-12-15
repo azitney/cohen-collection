@@ -9,7 +9,6 @@ class Footer extends Component {
     return (
       <div>
         <Navbar color="faded" light expand="md" className='ml-3'>
-          <Link to={'/'}>Cohen Collections</Link>
           <Link to={'/managerlogin'}>Manager Login</Link>
         </Navbar>
       </div>

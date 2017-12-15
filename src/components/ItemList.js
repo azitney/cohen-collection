@@ -104,6 +104,7 @@ class ItemList extends Component {
                     <CardDeck className='spacing'>
                       {fullList}
                     </CardDeck>
+                    <br></br>
                   </div>
                 </Col>
               </Row>
@@ -111,7 +112,7 @@ class ItemList extends Component {
           </Col>
         </Row>
       </div>
-      
+
     );
   }
 }

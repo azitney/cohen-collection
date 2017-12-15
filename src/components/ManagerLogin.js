@@ -18,11 +18,11 @@ class ManagerLogin extends Component {
       <Form>
         <FormGroup>
           <Label for="exampleEmail">Username</Label>
-          <Input type="text" name="email" id="exampleEmail" placeholder="with a placeholder"/>
+          <Input type="text" name="email" id="exampleEmail" />
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder"/>
+          <Input type="password" name="password" id="examplePassword" />
         </FormGroup>
       </Form>
       <Link to={'/manageitems/forsale'}>Login</Link>
